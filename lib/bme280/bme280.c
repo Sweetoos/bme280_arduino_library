@@ -13,19 +13,10 @@ void init_library(impl *const impl)
 
 float readTemperature()
 {
-    uint8_t temperature_1 = context->read_byte(BME280_ADDRESS);
+    uint8_t temperature_1 = context->read_byte(BME280_I2C_ADDRESS);
 
     return temperature_1;
     // atm let the function return address
-}
-
-uint8_t read_i2c_byte(const uint8_t address)
-{
-    Wire.beginTransmission(BME280_ADDRESS);
-    Wire.write(address);
-    Wire.endTransmission();
-    Wire.requestFrom(BME280_ADDRESS, 1);
-    return Wire.available() ? Wire.read() : 0;
 }
 uint8_t bme280_read_id()
 {

@@ -11,10 +11,10 @@ uint8_t arduino_i2c_read_byte(const uint8_t address)
 {
     uint8_t byte = 0;
 
-    Wire.beginTransmission(BME280_ADDRESS);
+    Wire.beginTransmission(BME280_I2C_ADDRESS);
     Wire.write(address);
     Wire.endTransmission();
-    Wire.requestFrom(BME280_ADDRESS, 1);
+    Wire.requestFrom(BME280_I2C_ADDRESS, 1);
     Wire.readBytes(&byte, 1);
 
     return byte;
