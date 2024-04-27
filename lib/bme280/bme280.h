@@ -15,7 +15,7 @@ impl *context;
 
 void init_library(impl *const impl);
 float readTemperature();
-void init_i2c();
 uint8_t read_i2c_byte(const uint8_t address);
+uint8_t bme280_read_id();
 
 #endif

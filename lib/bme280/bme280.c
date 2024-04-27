@@ -1,6 +1,7 @@
 #include "bme280.h"
+#include "bme280_registers.h"
 
-#define BME280_ADDRESS 0xD0
+
 
 impl* context;
 
@@ -18,11 +19,6 @@ float readTemperature()
     // atm let the function return address
 }
 
-void init_i2c()
-{
-    Wire.begin();
-}
-
 uint8_t read_i2c_byte(const uint8_t address)
 {
     Wire.beginTransmission(BME280_ADDRESS);
@@ -30,4 +26,8 @@ uint8_t read_i2c_byte(const uint8_t address)
     Wire.endTransmission();
     Wire.requestFrom(BME280_ADDRESS, 1);
     return Wire.available() ? Wire.read() : 0;
+}
+uint8_t bme280_read_id()
+{
+    return context->read_byte(BME280_ID_REGISTER);
 }
